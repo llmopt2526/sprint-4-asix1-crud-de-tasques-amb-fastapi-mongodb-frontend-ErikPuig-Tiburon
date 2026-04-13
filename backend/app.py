@@ -17,8 +17,8 @@ from pymongo import ReturnDocument
 # ------------------------------------------------------------------------ #
 # Creació de la instància FastAPI amb informació bàsica de l'API
 app = FastAPI(
-    title="Student Course API",
-    summary="Exemple d'API REST amb FastAPI i MongoDB per gestionar informació d'estudiants",
+    title="Gestor de Tasques",
+    summary="Aplicacio per a controla un Gestor de Tasques via FastAPI ",
 )
 
 # ------------------------------------------------------------------------ #
@@ -29,8 +29,9 @@ app = FastAPI(
 client = AsyncMongoClient(os.environ["MONGODB_URL"])
 
 # Selecció de la base de dades i de la col·lecció
-db = client.college
-student_collection = db.get_collection("students")
+db = client.gestor
+task_collection = db.get_collection("tasques")
+
 
 # Els documents de MongoDB tenen `_id` de tipus ObjectId.
 # Aquí definim PyObjectId com un string serialitzable per JSON,
@@ -40,15 +41,15 @@ PyObjectId = Annotated[str, BeforeValidator(str)]
 # ------------------------------------------------------------------------ #
 #                            Definició dels models                         #
 # ------------------------------------------------------------------------ #
-class StudentModel(BaseModel):
+class tasquesModel(BaseModel):
     """
     Model que representa un estudiant.
     Conté tots els camps obligatoris i opcional `_id`.
     """
-    # Clau primària de l'estudiant. 
+    # Clau primària de l'estudiant.
     # MongoDB utilitza `_id`, però l'API exposa aquest camp com `id`.
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
-    
+
     # Camps obligatoris de l'estudiant
     name: str = Field(...)
     email: EmailStr = Field(...)
@@ -61,10 +62,12 @@ class StudentModel(BaseModel):
         arbitrary_types_allowed=True,  # Permet tipus personalitzats com ObjectId
         json_schema_extra={
             "example": {
-                "name": "Jane Doe",
-                "email": "jdoe@example.com",
-                "course": "Experiments, Science, and Fashion in Nanophotonics",
-                "gpa": 3.0,
+                "titol": "Fer pràctica FastAPI",
+                "descripcio": "Implementar CRUD amb MongoDB",
+                "estat": "pendent",
+                "prioritat": "alta",
+                "categoria": "estudis",
+                "persona_assignada": "Paco"
             }
         },
     )
