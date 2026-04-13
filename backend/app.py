@@ -41,7 +41,7 @@ PyObjectId = Annotated[str, BeforeValidator(str)]
 # ------------------------------------------------------------------------ #
 #                            Definició dels models                         #
 # ------------------------------------------------------------------------ #
-class tasquesModel(BaseModel):
+class TascaModel(BaseModel):
     """
     Model que representa un estudiant.
     Conté tots els camps obligatoris i opcional `_id`.
@@ -51,15 +51,19 @@ class tasquesModel(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
 
     # Camps obligatoris de l'estudiant
-    name: str = Field(...)
-    email: EmailStr = Field(...)
-    course: str = Field(...)
-    gpa: float = Field(..., le=4.0)
+    class TascaModel(BaseModel):
+    id: Optional[PyObjectId] = Field(alias="_id", default=None)
 
-    # Configuració addicional del model Pydantic
+    titol: str = Field(...)
+    descripcio: str = Field(...)
+    estat: str = Field(default="pendent")
+    prioritat: str = Field(...)
+    categoria: str = Field(...)
+    persona_assignada: str = Field(...)
+
     model_config = ConfigDict(
-        populate_by_name=True,  # Permet utilitzar alias al serialitzar/deserialitzar
-        arbitrary_types_allowed=True,  # Permet tipus personalitzats com ObjectId
+        populate_by_name=True,
+        arbitrary_types_allowed=True,
         json_schema_extra={
             "example": {
                 "titol": "Fer pràctica FastAPI",
