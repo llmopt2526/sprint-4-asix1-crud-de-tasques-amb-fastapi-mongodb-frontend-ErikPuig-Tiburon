@@ -23,6 +23,7 @@ app = FastAPI(
 )
 from fastapi.middleware.cors import CORSMiddleware
 
+# Aixo es nomes pa no obrir un servidor web i me acepte lo de CORS, que me da pereza, luego se  borra
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
