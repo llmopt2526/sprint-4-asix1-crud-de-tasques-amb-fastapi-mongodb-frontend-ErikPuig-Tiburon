@@ -16,11 +16,20 @@ from pymongo import ReturnDocument
 #                         Inicialització de l'aplicació                    #
 # ------------------------------------------------------------------------ #
 # Creació de la instància FastAPI amb informació bàsica de l'API
+
 app = FastAPI(
     title="Gestor de Tasques",
     summary="Aplicacio per a controla un Gestor de Tasques via FastAPI ",
 )
+from fastapi.middleware.cors import CORSMiddleware
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ------------------------------------------------------------------------ #
 #                   Configuració de la connexió amb MongoDB                #
 # ------------------------------------------------------------------------ #
@@ -51,7 +60,8 @@ class TascaModel(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
 
     # Camps obligatoris de l'estudiant
-    class TascaModel(BaseModel):
+
+class TascaModel(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
 
     titol: str = Field(...)
