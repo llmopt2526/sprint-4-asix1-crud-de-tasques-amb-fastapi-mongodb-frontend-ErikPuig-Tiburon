@@ -12,14 +12,36 @@ const PA_ATRAS = document.getElementById("cancelarEdicio");
 // Pos lo necesito sabes
 const PLANTILLITA = document.getElementById("templateTasca");
 
+// Estes dos son per al GET individual
+const ID_PA_BUSCAR = document.getElementById("idTasca");
+const RESULTAT_DE_LA_BUSQUEDA = document.getElementById("resultat");
+
 let EDIT_ID
 let TASQUES = [];
 
-// Aixo carregara tots els documents del MongoDB
+// Farem la funcio per despres no repetir pases
 async function carregar() {
     const res = await fetch(AndroidPerroIaia);
     TASQUES = (await res.json()).tasques;
 	pintar();
+}
+
+// Per aconseguir nomes un document per id
+async function buscarUNA() {
+    const id = ID_PA_BUSCAR.value;
+    const respostaa = await fetch(AndroidPerroIaia + id);
+    const dades = await respostaa.json();
+
+    RESULTAT_DE_LA_BUSQUEDA.textContent = JSON.stringify(dades, null, 2);
+}
+
+// despres conseguirla, per si volem editarla
+async function buscarUNA_i_editar() {
+    const id = ID_PA_BUSCAR.value;
+    const respostaa = await fetch(AndroidPerroIaia + id);
+    const JSONEADO = await respostaa.json();
+
+    editar(JSONEADO);
 }
 
 // Creacio del form, tenin en conte els valors creats al app.py
