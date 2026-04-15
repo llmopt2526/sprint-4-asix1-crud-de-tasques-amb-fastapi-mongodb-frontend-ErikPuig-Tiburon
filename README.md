@@ -1,9 +1,14 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ULL36zWV)
+
 ### To guapo esto de arriba
 
 
-### Pos que tengo
+### Tutorial
 
-Tengo el app.py ya acabao creo, con lo necesario para interactuar con el, incluyendo obviamente la logica de la base de datos.
+Pases per a replicar el meu fet, primer tindrem que OBVIAMENT clona el meu repositori, per a fer aixo, haurem que utilitza la comanda seguent:
+> [!TIP]
+> Aixo ho tens que fer si o si tt
 
-Sigo la opcion 1, de Gestor de Tasques.
+```
+git clone https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon.git
+```
