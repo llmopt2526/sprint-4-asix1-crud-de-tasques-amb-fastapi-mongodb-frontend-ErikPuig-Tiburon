@@ -328,3 +328,56 @@ textarea {
       align-items: flex-start;
   }
 }
+.id-tasca {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.id-label {
+  font-weight: 700;
+  color: #475569;
+}
+/* Contenidor dels botons */
+.botons-busqueda {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Botó JSON (neutral / info) */
+.btn-json {
+  background: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-json:hover {
+  background: var(--secondary-hover);
+}
+
+/* Botó carregar formulari (acció principal) */
+.btn-carregar {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-carregar:hover {
+  background: var(--primary-hover);
+}
+button:active {
+  transform: scale(0.97);
+}
