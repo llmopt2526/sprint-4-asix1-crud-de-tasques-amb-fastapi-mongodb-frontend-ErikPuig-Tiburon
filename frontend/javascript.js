@@ -12,10 +12,31 @@ const PA_ATRAS = document.getElementById("cancelarEdicio");
 // Pos lo necesito sabes
 const PLANTILLITA = document.getElementById("templateTasca");
 
+let EDIT_ID
 let TASQUES = [];
 
-// -------------------- GET TOTES --------------------
+// Aixo carregara tots els documents del MongoDB
 async function carregar() {
     const res = await fetch(AndroidPerroIaia);
     TASQUES = (await res.json()).tasques;
+	pintar();
 }
+
+// Creacio del form, tenin en conte els valors creats al app.py
+const getForm = () => ({
+    titol: titol.value,
+    descripcio: descripcio.value,
+    estat: estat.value,
+    prioritat: prioritat.value,
+    categoria: categoria.value,
+    persona_assignada: persona_assignada.value
+});
+
+// Y aixo es basicament per a reiniciar el formulari cada vegada que enviesem info
+const resetForm = () => {
+    FORMULARI_TO_GUAPO.reset();
+    estat.value = "pendent";
+    prioritat.value = "mitjana";
+    EDIT_ID = null;
+    PA_ATRAS.classList.add("ocult");
+};
