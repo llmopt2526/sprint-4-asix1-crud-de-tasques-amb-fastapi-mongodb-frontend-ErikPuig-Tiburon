@@ -1,9 +1,139 @@
-<!doctype html>
-<html>
-  <head>
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tasques</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="capcalera">
+        <div class="contenidor">
+            <h1>Gestor de Tasques</h1>
+            <p class="subtitol">Frontend per gestionar tasques amb FastAPI + MongoDB</p>
+        </div>
+    </header>
+
+    <main class="contenidor">
+        <section class="panell formulari-panell">
+            <h2>Crear nova tasca</h2>
+
+            <form id="formulariTasca" class="formulari-tasca">
+                <div class="camp">
+                    <label for="titol">Títol</label>
+                    <input type="text" id="titol" name="titol" placeholder="Ex: Fer pràctica de FastAPI" required>
+                </div>
+
+                <div class="camp">
+                    <label for="descripcio">Descripció</label>
+                    <textarea id="descripcio" name="descripcio" rows="4" placeholder="Descriu la tasca..." required></textarea>
+                </div>
+
+                <div class="grid-dos">
+                    <div class="camp">
+                        <label for="estat">Estat</label>
+                        <select id="estat" name="estat">
+                            <option value="pendent">Pendent</option>
+                            <option value="feta">Feta</option>
+                        </select>
+                    </div>
+
+                    <div class="camp">
+                        <label for="prioritat">Prioritat</label>
+                        <select id="prioritat" name="prioritat">
+                            <option value="baixa">Baixa</option>
+                            <option value="mitjana">Mitjana</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-dos">
+                    <div class="camp">
+                        <label for="categoria">Categoria</label>
+                        <input type="text" id="categoria" name="categoria" placeholder="Ex: estudis" required>
+                    </div>
+
+                    <div class="camp">
+                        <label for="persona_assignada">Persona assignada</label>
+                        <input type="text" id="persona_assignada" name="persona_assignada" placeholder="Ex: Paco" required>
+                    </div>
+                </div>
+
+                <div class="accions-formulari">
+                    <button type="submit" class="btn btn-primary">Afegir tasca</button>
+                    <button type="button" id="cancelarEdicio" class="btn btn-secondary ocult">Cancelar edició</button>
+                </div>
+            </form>
+
+            <div id="missatge" class="missatge"></div>
+        </section>
+
+        <section class="panell eines-panell">
+            <h2>Filtres</h2>
+
+            <div class="grid-tres">
+                <div class="camp">
+                    <label for="filtreText">Buscar</label>
+                    <input type="text" id="filtreText" placeholder="Títol, categoria o persona">
+                </div>
+
+                <div class="camp">
+                    <label for="filtreEstat">Estat</label>
+                    <select id="filtreEstat">
+                        <option value="">Tots</option>
+                        <option value="pendent">Pendent</option>
+                        <option value="feta">Feta</option>
+                    </select>
+                </div>
+
+                <div class="camp">
+                    <label for="filtrePrioritat">Prioritat</label>
+                    <select id="filtrePrioritat">
+                        <option value="">Totes</option>
+                        <option value="baixa">Baixa</option>
+                        <option value="mitjana">Mitjana</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="panell llista-panell">
+            <div class="llista-cap">
+                <h2>Llista de tasques</h2>
+                <span id="comptadorTasques" class="badge">0 tasques</span>
+            </div>
+
+            <div id="estatCarrega" class="estat-carrega">Carregant tasques...</div>
+            <div id="llistaTasques" class="llista-tasques"></div>
+        </section>
+    </main>
+
+    <template id="templateTasca">
+        <article class="targeta-tasca">
+            <div class="targeta-superior">
+                <div>
+                    <h3 class="tasca-titol"></h3>
+                    <p class="tasca-descripcio"></p>
+                </div>
+                <span class="tasca-estat"></span>
+            </div>
+
+            <div class="meta-tasca">
+                <span><strong>Prioritat:</strong> <span class="tasca-prioritat"></span></span>
+                <span><strong>Categoria:</strong> <span class="tasca-categoria"></span></span>
+                <span><strong>Assignada a:</strong> <span class="tasca-persona"></span></span>
+            </div>
+
+            <div class="accions-tasca">
+                <button class="btn btn-small btn-warning boto-editar">Editar</button>
+                <button class="btn btn-small btn-success boto-estat">Canviar estat</button>
+                <button class="btn btn-small btn-danger boto-eliminar">Eliminar</button>
+            </div>
+        </article>
+    </template>
+
+    <script src="javascript.js"></script>
+</body>
 </html>
