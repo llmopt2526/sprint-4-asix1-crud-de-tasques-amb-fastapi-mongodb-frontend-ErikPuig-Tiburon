@@ -11,3 +11,11 @@ const LLISTA_TO_GUAPA = document.getElementById("llistaTasques");
 const PA_ATRAS = document.getElementById("cancelarEdicio");
 // Pos lo necesito sabes
 const PLANTILLITA = document.getElementById("templateTasca");
+
+let TASQUES = [];
+
+// -------------------- GET TOTES --------------------
+async function carregar() {
+    const res = await fetch(AndroidPerroIaia);
+    TASQUES = (await res.json()).tasques;
+}
