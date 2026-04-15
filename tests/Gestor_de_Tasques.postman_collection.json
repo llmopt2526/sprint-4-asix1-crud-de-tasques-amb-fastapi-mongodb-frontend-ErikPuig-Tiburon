@@ -31,7 +31,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n \"titol\": \"Fer pràctica FastAPI\",\n \"descripcio\": \"Implementar CRUD amb MongoDB\",\n \"estat\": \"pendent\",\n \"prioritat\": \"alta\",\n \"categoria\": \"estudis\",\n \"persona_assignada\": \"Paco\"\n}",
+          "raw": "{\n \"titol\": \"Exemple tasca\",\n \"descripcio\": \"Aquesta tasca es d'exemple \",\n \"estat\": \"pendent\",\n \"prioritat\": \"alta\",\n \"categoria\": \"estudis\",\n \"persona_assignada\": \"Ferrix\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -128,7 +128,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/tasques/{{item_id}}",
+          "raw": "http://localhost:8000/tasques/69dfb033c0fe9d8023b86dd0",
           "protocol": "http",
           "host": [
             "localhost"
@@ -136,7 +136,7 @@
           "port": "8000",
           "path": [
             "tasques",
-            "{{item_id}}"
+            "69dfb033c0fe9d8023b86dd0"
           ]
         }
       },
