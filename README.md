@@ -1,8 +1,8 @@
-[Review Assignment Due Date](https://classroom.github.com/a/ULL36zWV)
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ULL36zWV)
 
 ### To guapo esto de arriba
 
-### Tutorial
+## Tutorial
 
 Pases per a replicar el meu fet, primer tindrem que OBVIAMENT clona el meu repositori, per a fer aixo, haurem que utilitza la comanda seguent:
 
@@ -16,7 +16,7 @@ git clone https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fasta
 Seguidament tindrem que veure que tenim python instalat al nostre sistema operatiu
 
 > [!IMPORTANT]
-> Honestament nomes vull probar aixo de important perque ho he vis al TikTok
+> Honestament nomes vull probar aixo de important, warning i tip perque ho he vis al TikTok
 
 > [!WARNING]
 > Ara explicare com fer-ho des de un sistema linux
@@ -50,7 +50,7 @@ pip freeze > requirements.tx
 Per crear l'entorn ho farem tranqulament amb la comanda
 
 ```
-python -m venv "nom que tu vulgues
+python -m venv "nom que tu vulgues"
 ```
 
 I ara tindrem que crear el entorn, haurem de entrar dins de la carpeta creada o activant l'arxiu amb la ruta complet, ho farem amb la comanda
@@ -63,7 +63,7 @@ Fet aixo, podrem instalar els requisits dins de l'entorn de la seguent manera
 ```
 pip install -r requirements.txt
 ```
-Ara, el seguent sera crear una variable d’entorn de la URL necessaria per a el Cluster al que ens conectarem
+Ara, el seguent sera crear una variable d’entorn de la URL necessaria per a el Cluster al que ens conectarem (no funcionara la meva URL ja que no tinc permeses les vostres IP, menys al insti claro)
 
 ```
 export MONGODB_URL="mongodb+srv://erikpuig_db_user:CL0xkjQ5eJaIlAWN@ejemplocluster.aa9a78t.mongodb.net/?appName=EjemploCluster"
@@ -82,3 +82,52 @@ python -m http.server 8080
 Amb aixo fet, entrarem a el navegador i ficarem `localhost:8080`i vuerem el frontend
 
 ![Frontend](img/frontend.png)
+
+
+## POSTMAN
+
+### PUT
+
+El endpoint seria aquest
+
+![GetPostman](img/PUT.png)
+
+La resposta es aquesta
+
+![GetPostman](img/PUTresposta.png)
+
+### GET a todos
+
+El endpoint seria aquest
+
+![GetPostman](img/GetTOTS.png)
+
+La resposta es aquesta
+
+![GetPostman](img/GETTOTSresposta.png)
+
+### GET individual
+
+El endpoint seria aquest
+
+![GetPostman](img/GET.png)
+
+### PUT
+
+El endpoint seria aquest
+
+![GetPostman](img/PUT.png)
+
+La resposta es aquesta
+
+![GetPostman](img/PUTresposta.png)
+
+### Delete
+
+El endpoint seria aquest
+
+![GetPostman](img/Delete.png)
+
+La resposta es aquesta
+
+![GetPostman](img/Delteresposta.png)
