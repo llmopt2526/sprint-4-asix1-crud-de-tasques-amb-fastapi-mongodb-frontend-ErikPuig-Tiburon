@@ -1,17 +1,18 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ULL36zWV)
+[Review Assignment Due Date](https://classroom.github.com/a/ULL36zWV)
 
 ### To guapo esto de arriba
-
 
 ### Tutorial
 
 Pases per a replicar el meu fet, primer tindrem que OBVIAMENT clona el meu repositori, per a fer aixo, haurem que utilitza la comanda seguent:
+
 > [!TIP]
 > Aixo ho tens que fer si o si tt
 
 ```
 git clone https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon.git
 ```
+
 Seguidament tindrem que veure que tenim python instalat al nostre sistema operatiu
 
 > [!IMPORTANT]
@@ -21,16 +22,63 @@ Seguidament tindrem que veure que tenim python instalat al nostre sistema operat
 > Ara explicare com fer-ho des de un sistema linux
 
 Si tens un sistema operatiu basat en Debian, les commandes son el seguent:
+
 ```
 sudo apt update && sudo apt upgrade
 ```
+
 ```
 sudo apt install -y python3-pip
 ```
+
 Si tens un sistema operatiu basat en Arch, les commandes son el seguent:
+
 ```
 sudo pacman -Syu
 ```
+
 ```
 sudo pacman -S python
 ```
+
+Ja amb aixo, entrarem a la carpeta de `backend` aqui dins, crearem un entorn de python per a instalar els requisits de `requirements.txt` que he creat amb la comanda
+
+```
+pip freeze > requirements.tx
+```
+
+Per crear l'entorn ho farem tranqulament amb la comanda
+
+```
+python -m venv "nom que tu vulgues
+```
+
+I ara tindrem que crear el entorn, haurem de entrar dins de la carpeta creada o activant l'arxiu amb la ruta complet, ho farem amb la comanda
+
+```
+source bin/activate
+```
+
+Fet aixo, podrem instalar els requisits dins de l'entorn de la seguent manera
+```
+pip install -r requirements.txt
+```
+Ara, el seguent sera crear una variable d’entorn de la URL necessaria per a el Cluster al que ens conectarem
+
+```
+export MONGODB_URL="mongodb+srv://erikpuig_db_user:CL0xkjQ5eJaIlAWN@ejemplocluster.aa9a78t.mongodb.net/?appName=EjemploCluster"
+```
+
+Ara si que si, ja dins de la carpeta de `backend` haurem de fer la comanda necessaria per a poder arrancar la aplicacio de API per a crear els endpoints necessaris, la comanda es la seguent:
+
+```
+uvicorn app:app --reload
+```
+Ja fet aixo, tindrem que obrir un altre terminal i entra a la carpeta de `frontend` i crearem un servidor web de python amb la comanda
+```
+python -m http.server 8080
+```
+
+Amb aixo fet, entrarem a el navegador i ficarem `localhost:8080`i vuerem el frontend
+
+![Frontend](img/frontend.png)
