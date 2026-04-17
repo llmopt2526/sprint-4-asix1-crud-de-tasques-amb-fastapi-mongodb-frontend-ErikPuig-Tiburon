@@ -21,7 +21,7 @@ app = FastAPI(
     title="Gestor de Tasques",
     summary="Aplicacio per a controla un Gestor de Tasques via FastAPI ",
 )
-
+from fastapi.middleware.cors import CORSMiddleware
 # Aixo es pa que el navegador no toque massa els collons en el frontend
 # Basicament deixem passar peticions des de qualsevol puesto
 app.add_middleware(
@@ -242,5 +242,3 @@ async def delete_tasca(id: str):
 
     # Si no existia, pues error
     raise HTTPException(status_code=404, detail=f"Tasca {id} no trobada")
-
-

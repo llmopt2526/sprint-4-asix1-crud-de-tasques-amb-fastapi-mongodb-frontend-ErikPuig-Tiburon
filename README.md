@@ -84,10 +84,13 @@ Ja fet aixo, tindrem que obrir un altre terminal i entra a la carpeta de `fronte
 ```
 python -m http.server 8080
 ```
+### Comprovacio
 
 Amb aixo fet, entrarem a el navegador i ficarem `localhost:8080`i vuerem el frontend
 
 ![Frontend](img/frontend.png)
+
+
 
 
 ## POSTMAN
