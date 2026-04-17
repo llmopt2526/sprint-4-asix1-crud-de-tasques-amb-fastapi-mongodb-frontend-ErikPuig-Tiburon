@@ -90,7 +90,13 @@ Amb aixo fet, entrarem a el navegador i ficarem `localhost:8080`i vuerem el fron
 
 ![Frontend](img/frontend.png)
 
+Seguidament farem una porva de insercio de dades
 
+![Frontend](img/PostFrontend.png)
+
+![Frontend](img/GetTOTSFrontend.png)
+
+![Frontend](img/GetIDFrontend.png)
 
 
 ## POSTMAN
