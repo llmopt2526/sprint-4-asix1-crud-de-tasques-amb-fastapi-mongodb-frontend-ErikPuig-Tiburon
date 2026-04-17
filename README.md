@@ -2,6 +2,41 @@
 
 ### To guapo esto de arriba
 
+## Ordre
+
+El ordre es molt important al hora de fer projectes, en aquest cas aqui tindrem l'estructura del meu projecte:
+
+```
+├── 📁 .github
+│   └── ⚙️ .keep
+├── 📁 backend
+│   ├── 🐍 app.py
+│   └── 📄 requirements.txt
+├── 📁 frontend
+│   ├── 🌐 index.html
+│   ├── 📄 javascript.js
+│   └── 🎨 styles.css
+├── 📁 img
+│   ├── 🖼️ Delete.png
+│   ├── 🖼️ Delteresposta.png
+│   ├── 🖼️ GET.png
+│   ├── 🖼️ GETTOTSresposta.png
+│   ├── 🖼️ GetIDFrontend.png
+│   ├── 🖼️ GetTOTS.png
+│   ├── 🖼️ GetTOTSFrontend.png
+│   ├── 🖼️ POST.png
+│   ├── 🖼️ POSTresposta.png
+│   ├── 🖼️ PUT.png
+│   ├── 🖼️ PUTresposta.png
+│   ├── 🖼️ PostFrontend.png
+│   ├── 🖼️ frontend.png
+│   └── 🎬 videoito.mp4
+├── 📁 tests
+│   └── ⚙️ Gestor_de_Tasques.postman_collection.json
+└── 📝 README.md
+```
+
+
 ## Tutorial
 
 ### Preparacio
@@ -153,5 +188,3 @@ La resposta es aquesta
 ## Video de la practica completa
 
 Se que tenia que ser un video curtet, pero una cosa llevo a la otra
-
-![Mirad video](https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon/blob/main/img/videoito.mp4)
