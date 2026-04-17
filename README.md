@@ -146,3 +146,12 @@ El endpoint seria aquest
 La resposta es aquesta
 
 ![GetPostman](img/Delteresposta.png)
+
+
+
+
+## Video de la practica completa
+
+Se que tenia que ser un video curtet, pero una cosa llevo a la otra
+
+![Video](img/videoito.mp4)

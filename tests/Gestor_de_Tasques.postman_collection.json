@@ -76,7 +76,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n \"titol\": \"tasca exemple\",\n \"descripcio\": \"tasca d'exemple \",\n \"estat\": \"feta\",\n \"prioritat\": \"mitjana\",\n \"categoria\": \"treball\",\n \"persona_assignada\": \"Ferrix\"\n}",
+          "raw": "{\n \"titol\": \"tasca exemple\",\n \"descripcio\": \"tasca d'exemple \",\n \"estat\": \"pendent\",\n \"prioritat\": \"mitjana\",\n \"categoria\": \"treball\",\n \"persona_assignada\": \"Ferrix\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -84,7 +84,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8000/tasques/69dfb033c0fe9d8023b86dd0",
+          "raw": "http://localhost:8000/tasques/{{item_id}}",
           "protocol": "http",
           "host": [
             "localhost"
@@ -92,7 +92,7 @@
           "port": "8000",
           "path": [
             "tasques",
-            "69dfb033c0fe9d8023b86dd0"
+            "{{item_id}}"
           ]
         }
       },
@@ -128,7 +128,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8000/tasques/69dfb033c0fe9d8023b86dd0",
+          "raw": "http://localhost:8000/tasques/{{item_id}}",
           "protocol": "http",
           "host": [
             "localhost"
@@ -136,7 +136,7 @@
           "port": "8000",
           "path": [
             "tasques",
-            "69dfb033c0fe9d8023b86dd0"
+            "{{item_id}}"
           ]
         }
       },
