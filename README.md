@@ -154,4 +154,4 @@ La resposta es aquesta
 
 Se que tenia que ser un video curtet, pero una cosa llevo a la otra
 
-[![Mirad video(https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon/blob/main/img/PUTresposta.png)](https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon/blob/main/img/videoito.mp4)
+[![Mirad video](https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon/blob/main/img/PUTresposta.png)](https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon/blob/main/img/videoito.mp4)
