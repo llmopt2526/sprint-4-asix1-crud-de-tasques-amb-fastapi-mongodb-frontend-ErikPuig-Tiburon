@@ -15,8 +15,9 @@ const PLANTILLITA = document.getElementById("templateTasca");
 // Estes dos son per al GET individual
 const ID_PA_BUSCAR = document.getElementById("idTasca");
 const RESULTAT_DE_LA_BUSQUEDA = document.getElementById("resultat");
+const COMPTADOR_TASQUES = document.getElementById("comptadorTasques");
 
-let EDIT_ID
+let EDIT_ID = null;
 let TASQUES = [];
 
 // Farem la funcio per despres no repetir pases
@@ -168,4 +169,3 @@ PA_ATRAS.onclick = resetForm;
 
 // I al final carreguem totes les tasques nomes entrar a la pagina
 carregar();
-

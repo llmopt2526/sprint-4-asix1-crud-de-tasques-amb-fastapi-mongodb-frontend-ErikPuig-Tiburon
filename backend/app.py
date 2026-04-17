@@ -1,16 +1,25 @@
 import os
 from typing import Optional, List
 
+# Lo basic de FastAPI, pa fer la API i controlar errors i respostes
 from fastapi import FastAPI, Body, HTTPException, status
 from fastapi.responses import Response
-from pydantic import ConfigDict, BaseModel, Field, EmailStr
+
+# Pa fer els models i validar que no envies qualsevol merda
+from pydantic import ConfigDict, BaseModel, Field
 from pydantic.functional_validators import BeforeValidator
 from typing_extensions import Annotated
 
+# ObjectId es la ID rara de MongoDB
 from bson import ObjectId
-import asyncio
+
+# MongoDB async, que es lo que demana l'enunciat
 from pymongo import AsyncMongoClient
 from pymongo import ReturnDocument
+
+# Lo del CORS pa que el frontend no se queixe quan cride al backend
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # ------------------------------------------------------------------------ #
 #                         Inicialització de l'aplicació                    #
@@ -21,7 +30,7 @@ app = FastAPI(
     title="Gestor de Tasques",
     summary="Aplicacio per a controla un Gestor de Tasques via FastAPI ",
 )
-from fastapi.middleware.cors import CORSMiddleware
+
 # Aixo es pa que el navegador no toque massa els collons en el frontend
 # Basicament deixem passar peticions des de qualsevol puesto
 app.add_middleware(
