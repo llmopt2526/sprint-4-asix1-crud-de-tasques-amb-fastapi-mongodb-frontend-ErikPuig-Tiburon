@@ -4,6 +4,8 @@
 
 ## Tutorial
 
+### Preparacio
+
 Pases per a replicar el meu fet, primer tindrem que OBVIAMENT clona el meu repositori, per a fer aixo, haurem que utilitza la comanda seguent:
 
 > [!TIP]
@@ -20,6 +22,8 @@ Seguidament tindrem que veure que tenim python instalat al nostre sistema operat
 
 > [!WARNING]
 > Ara explicare com fer-ho des de un sistema linux
+
+### Instalacio de python
 
 Si tens un sistema operatiu basat en Debian, les commandes son el seguent:
 
@@ -40,6 +44,7 @@ sudo pacman -Syu
 ```
 sudo pacman -S python
 ```
+### Creacio d'entorn
 
 Ja amb aixo, entrarem a la carpeta de `backend` aqui dins, crearem un entorn de python per a instalar els requisits de `requirements.txt` que he creat amb la comanda
 
@@ -52,6 +57,7 @@ Per crear l'entorn ho farem tranqulament amb la comanda
 ```
 python -m venv "nom que tu vulgues"
 ```
+### Activacio d'entorn
 
 I ara tindrem que crear el entorn, haurem de entrar dins de la carpeta creada o activant l'arxiu amb la ruta complet, ho farem amb la comanda
 
