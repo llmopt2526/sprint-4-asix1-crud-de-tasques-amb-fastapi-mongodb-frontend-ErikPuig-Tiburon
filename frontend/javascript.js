@@ -62,3 +62,110 @@ const resetForm = () => {
     EDIT_ID = null;
     PA_ATRAS.classList.add("ocult");
 };
+
+// Esta funcio es la del POST, o siga crear una tasca nova
+const crear = async () => {
+    await fetch(AndroidPerroIaia, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(getForm())
+    });
+    resetForm();
+    carregar();
+};
+
+// Esta funcio es la del PUT, o siga actualitzar una tasca que ja existeix
+const actualitzar = async (id) => {
+    await fetch(AndroidPerroIaia + id, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(getForm())
+    });
+    resetForm();
+    carregar();
+};
+
+// Esta es la de eliminar, que li passa la id a la API i la borra
+const eliminar = async (id) => {
+    await fetch(AndroidPerroIaia + id, {
+        method: "DELETE"
+    });
+    carregar();
+};
+
+// Esta funcio ompli el formulari en les dades de la tasca per poder editarla
+function editar(t) {
+    EDIT_ID = t.id || t._id;
+
+    titol.value = t.titol;
+    descripcio.value = t.descripcio;
+    estat.value = t.estat;
+    prioritat.value = t.prioritat;
+    categoria.value = t.categoria;
+    persona_assignada.value = t.persona_assignada;
+
+    PA_ATRAS.classList.remove("ocult");
+}
+
+// Esta funcio canvia l'estat de la tasca, si esta feta la posa pendent i al reves
+const toggleEstat = async (t) => {
+    await fetch(AndroidPerroIaia + (t.id || t._id), {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            ...t,
+            estat: t.estat === "feta" ? "pendent" : "feta"
+        })
+    });
+    carregar();
+};
+
+// Aixo es lo de dalt del tot que diu quantes tasques hi han
+COMPTADOR_TASQUES.textContent = TASQUES.length === 1 ? "1 tasca" : `${TASQUES.length} tasques`;
+
+// Esta es la funcio important que pinta totes les targetes al llistat i els posa els colors i els botons
+function pintar() {
+    LLISTA_TO_GUAPA.innerHTML = "";
+
+    // Aci actualitzem tambe el contador perque vaja canviant cada vegada
+    COMPTADOR_TASQUES.textContent = `${TASQUES.length} tasques`;
+
+    TASQUES.forEach(t => {
+        // Clonem la plantilla del HTML per no escriure el codi a saco en JS
+        const node = PLANTILLITA.content.cloneNode(true);
+
+        // Aci fiquem les dades que venen de la API dins de cada targeta
+        node.querySelector(".tasca-id").textContent = t.id || t._id;
+        node.querySelector(".tasca-titol").textContent = t.titol;
+        node.querySelector(".tasca-descripcio").textContent = t.descripcio;
+        node.querySelector(".tasca-prioritat").textContent = t.prioritat;
+        node.querySelector(".tasca-categoria").textContent = t.categoria;
+        node.querySelector(".tasca-persona").textContent = t.persona_assignada;
+
+        // Aci li posem el text del estat i la classe per al color
+        const estatEl = node.querySelector(".tasca-estat");
+        estatEl.textContent = t.estat;
+        estatEl.classList.add(t.estat === "feta" ? "estat-feta" : "estat-pendent");
+
+        // Estos son els events dels botons de cada targeta
+        node.querySelector(".boto-editar").onclick = () => editar(t);
+        node.querySelector(".boto-estat").onclick = () => toggleEstat(t);
+        node.querySelector(".boto-eliminar").onclick = () => eliminar(t.id || t._id);
+
+        // I finalment afegim la targeta al contenidor gran del llistat
+        LLISTA_TO_GUAPA.appendChild(node);
+    });
+}
+
+// Aci fem que quan envies el formulari, si estas editant actualitze, i si no cree
+FORMULARI_TO_GUAPO.onsubmit = (e) => {
+    e.preventDefault();
+    EDIT_ID ? actualitzar(EDIT_ID) : crear();
+};
+
+// Este boto es per cancelar l'edicio i deixar el formulari net
+PA_ATRAS.onclick = resetForm;
+
+// I al final carreguem totes les tasques nomes entrar a la pagina
+carregar();
+
