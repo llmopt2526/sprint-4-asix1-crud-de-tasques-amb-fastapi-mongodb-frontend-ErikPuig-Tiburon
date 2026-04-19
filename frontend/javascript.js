@@ -1,80 +1,171 @@
-//===Any global variables whose scope will need to be across the entire file...
-var currentId;
+// Ara en general nomes vaig a declarar les constants necesaries per a el frontend
 
-//===Actually, I am kind of a big fan of defining a Global object, or something
-//	 similar to store all of my page-level variables to. Something like:
-var Global = {
-	currentId: undefined,
-	action: 'create',
-	user: {
-		userName: 'Bob',
-		email: 'bgibilaro@valexander.com',
-		extension: '2470'
-	}
-};
+// AndroidPerroIaia es lo que significa API, lo vi en TikTok
+const AndroidPerroIaia = "http://127.0.0.1:8000/tasques/";
 
-// this allows me to get those values anywhere in the page with
-// something like Global.currentId or Global.user.userName. I can also set it by saying
-// Global.currentId = 2. I can even add to it on-the-fly by saying
-// Global.newVariable = 'something' which is now available over the
-// entirety of that page....
+// Pos lo necesito sabes
+const FORMULARI_TO_GUAPO = document.getElementById("formulariTasca");
+// Pos lo necesito sabes
+const LLISTA_TO_GUAPA = document.getElementById("llistaTasques");
+// Pos lo necesito sabes
+const PA_ATRAS = document.getElementById("cancelarEdicio");
+// Pos lo necesito sabes
+const PLANTILLITA = document.getElementById("templateTasca");
 
-//===My document.ready() handler...
-$(document).ready(function(){
+// Estes dos son per al GET individual
+const ID_PA_BUSCAR = document.getElementById("idTasca");
+const RESULTAT_DE_LA_BUSQUEDA = document.getElementById("resultat");
+const COMPTADOR_TASQUES = document.getElementById("comptadorTasques");
 
-	//=== do some code stuff...
+let EDIT_ID = null;
+let TASQUES = [];
 
-	//===finally, bind my events...
-	bindEvents();
-});
-
-//===This function handles event binding for anything on the page....
-function bindEvents(){
-	// So, something simply like binding to a static anchor tag...
-	$('#aSomeLink').on('click', function(event){
-
-		// do some cool code stuff...
-		// Mr. Wizard Time: try putting a break point someplace in here and
-		//	then investigate the event argument. All sorts of cool stuff can
-		//	come from there. In fact, what if I wanted to assign the link that
-		//	was clicked to a local variable?
-
-		// I could do this...
-		$a = $(this);	// note, prefixing the variable with bling ($) is just a 
-						// nice way for us to know that it is a jQuery object...
-
-		// Or, I could do this...
-		$a = $(event.target);
-
-		// I could also get the id of the link like so:
-		var id = event.target.id;
-
-		// not a big difference, but it is nice to use native JavaScript when you can. 
-	});
-
-	// Hey, but I can also do something cooler with the on method. What if I have a table
-	//	full of documents on the page with the option to edit, delete, etc. each of the table
-	//	rows. I can handle this in one nice bind using on. for the sake of this example, let's
-	//	assume I gave the "delete" link an attribute of rel="delete" and the "edit" link an 
-	//	attribute of rel="edit", I could do the following:
-	$('#myTable').on('click', 'a[rel=delete],a[rel=edit]', function(event){
-		$a = $(event.target);
-
-		switch($a.attr('rel')){
-			case 'edit':
-
-				// do some stuff or call a function...
-				
-				break;
-			case 'delete':
-				// do some stuff or call a function...
-
-				break;
-		}
-	});
-
-	// the above allows you to setup your bindings one time, when the page loads and then forget about
-	//	it. It will apply those bindings any time a new row is added to #myTable, automagically...
+// Farem la funcio per despres no repetir pases
+async function carregar() {
+    const res = await fetch(AndroidPerroIaia);
+    TASQUES = (await res.json()).tasques;
+	pintar();
 }
 
-//===Then everything below this is all of the other declared functions for my page...
+// Per aconseguir nomes un document per id
+async function buscarUNA() {
+    const id = ID_PA_BUSCAR.value;
+    const respostaa = await fetch(AndroidPerroIaia + id);
+    const dades = await respostaa.json();
+
+    RESULTAT_DE_LA_BUSQUEDA.textContent = JSON.stringify(dades, null, 2);
+}
+
+// despres conseguirla, per si volem editarla
+async function buscarUNA_i_editar() {
+    const id = ID_PA_BUSCAR.value;
+    const respostaa = await fetch(AndroidPerroIaia + id);
+    const JSONEADO = await respostaa.json();
+
+    editar(JSONEADO);
+}
+
+// Creacio del form, tenin en conte els valors creats al app.py
+const getForm = () => ({
+    titol: titol.value,
+    descripcio: descripcio.value,
+    estat: estat.value,
+    prioritat: prioritat.value,
+    categoria: categoria.value,
+    persona_assignada: persona_assignada.value
+});
+
+// Y aixo es basicament per a reiniciar el formulari cada vegada que enviesem info
+const resetForm = () => {
+    FORMULARI_TO_GUAPO.reset();
+    estat.value = "pendent";
+    prioritat.value = "mitjana";
+    EDIT_ID = null;
+    PA_ATRAS.classList.add("ocult");
+};
+
+// Esta funcio es la del POST, o siga crear una tasca nova
+const crear = async () => {
+    await fetch(AndroidPerroIaia, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(getForm())
+    });
+    resetForm();
+    carregar();
+};
+
+// Esta funcio es la del PUT, o siga actualitzar una tasca que ja existeix
+const actualitzar = async (id) => {
+    await fetch(AndroidPerroIaia + id, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(getForm())
+    });
+    resetForm();
+    carregar();
+};
+
+// Esta es la de eliminar, que li passa la id a la API i la borra
+const eliminar = async (id) => {
+    await fetch(AndroidPerroIaia + id, {
+        method: "DELETE"
+    });
+    carregar();
+};
+
+// Esta funcio ompli el formulari en les dades de la tasca per poder editarla
+function editar(t) {
+    EDIT_ID = t.id || t._id;
+
+    titol.value = t.titol;
+    descripcio.value = t.descripcio;
+    estat.value = t.estat;
+    prioritat.value = t.prioritat;
+    categoria.value = t.categoria;
+    persona_assignada.value = t.persona_assignada;
+
+    PA_ATRAS.classList.remove("ocult");
+}
+
+// Esta funcio canvia l'estat de la tasca, si esta feta la posa pendent i al reves
+const toggleEstat = async (t) => {
+    await fetch(AndroidPerroIaia + (t.id || t._id), {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            ...t,
+            estat: t.estat === "feta" ? "pendent" : "feta"
+        })
+    });
+    carregar();
+};
+
+// Aixo es lo de dalt del tot que diu quantes tasques hi han
+COMPTADOR_TASQUES.textContent = TASQUES.length === 1 ? "1 tasca" : `${TASQUES.length} tasques`;
+
+// Esta es la funcio important que pinta totes les targetes al llistat i els posa els colors i els botons
+function pintar() {
+    LLISTA_TO_GUAPA.innerHTML = "";
+
+    // Aci actualitzem tambe el contador perque vaja canviant cada vegada
+    COMPTADOR_TASQUES.textContent = `${TASQUES.length} tasques`;
+
+    TASQUES.forEach(t => {
+        // Clonem la plantilla del HTML per no escriure el codi a saco en JS
+        const node = PLANTILLITA.content.cloneNode(true);
+
+        // Aci fiquem les dades que venen de la API dins de cada targeta
+        node.querySelector(".tasca-id").textContent = t.id || t._id;
+        node.querySelector(".tasca-titol").textContent = t.titol;
+        node.querySelector(".tasca-descripcio").textContent = t.descripcio;
+        node.querySelector(".tasca-prioritat").textContent = t.prioritat;
+        node.querySelector(".tasca-categoria").textContent = t.categoria;
+        node.querySelector(".tasca-persona").textContent = t.persona_assignada;
+
+        // Aci li posem el text del estat i la classe per al color
+        const estatEl = node.querySelector(".tasca-estat");
+        estatEl.textContent = t.estat;
+        estatEl.classList.add(t.estat === "feta" ? "estat-feta" : "estat-pendent");
+
+        // Estos son els events dels botons de cada targeta
+        node.querySelector(".boto-editar").onclick = () => editar(t);
+        node.querySelector(".boto-estat").onclick = () => toggleEstat(t);
+        node.querySelector(".boto-eliminar").onclick = () => eliminar(t.id || t._id);
+
+        // I finalment afegim la targeta al contenidor gran del llistat
+        LLISTA_TO_GUAPA.appendChild(node);
+    });
+}
+
+// Aci fem que quan envies el formulari, si estas editant actualitze, i si no cree
+FORMULARI_TO_GUAPO.onsubmit = (e) => {
+    e.preventDefault();
+    EDIT_ID ? actualitzar(EDIT_ID) : crear();
+};
+
+// Este boto es per cancelar l'edicio i deixar el formulari net
+PA_ATRAS.onclick = resetForm;
+
+// I al final carreguem totes les tasques nomes entrar a la pagina
+carregar();

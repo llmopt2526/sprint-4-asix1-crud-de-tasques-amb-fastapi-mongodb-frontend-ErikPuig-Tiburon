@@ -1,21 +1,121 @@
-/* Applies to the entire body of the HTML document (except where overridden by more specific
-selectors). */
-body {
-  margin: 25px;
-  background-color: rgb(240,240,240);
-  font-family: arial, sans-serif;
-  font-size: 14px;
-}
+/* =========================================
+   Estils Personalitzats per a Milligram
+   ========================================= */
 
-/* Applies to all <h1>...</h1> elements. */
-h1 {
-  font-size: 35px;
-  font-weight: normal;
-  margin-top: 5px;
-}
+   :root {
+    --danger: #dc2626;
+    --success: #16a34a;
+    --warning: #d97706;
+  }
 
-/* Applies to all elements with <... class="someclass"> specified. */
-.someclass { color: red; }
+  body {
+    background-color: #f4f7fb;
+  }
 
-/* Applies to the element with <... id="someid"> specified. */
-#someid { color: green; }
+  .capcalera {
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .capcalera h1, .capcalera p {
+    color: white;
+    margin-bottom: 0;
+  }
+
+  /* Panells / Targetes per separar el contingut de Milligram */
+  .panell {
+    background: white;
+    border: 1px solid #dbe3ee;
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+  }
+
+  .targeta-tasca {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Identificadors i textos muts */
+  .id-tasca {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+  }
+
+  .tasca-descripcio {
+    color: #4b5563;
+    white-space: pre-wrap;
+  }
+
+  /* Botons personalitzats (Milligram només porta el lila primari per defecte) */
+  .button.button-danger {
+    background-color: var(--danger);
+    border-color: var(--danger);
+  }
+  .button.button-danger:hover {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+  }
+
+  .button.button-success {
+    background-color: var(--success);
+    border-color: var(--success);
+  }
+  .button.button-success:hover {
+    background-color: #15803d;
+    border-color: #15803d;
+  }
+
+  .button.button-warning {
+    background-color: var(--warning);
+    border-color: var(--warning);
+  }
+  .button.button-warning:hover {
+    background-color: #b45309;
+    border-color: #b45309;
+  }
+
+  .botons-busqueda {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Badges i Estats */
+  .badge {
+    background: #e2e8f0;
+    color: #0f172a;
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  .estat-pendent {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .estat-feta {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  /* Utilitats */
+  .ocult {
+    display: none !important;
+  }
+
+  .missatge {
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+  .missatge.ok { color: var(--success); }
+  .missatge.error { color: var(--danger); }
