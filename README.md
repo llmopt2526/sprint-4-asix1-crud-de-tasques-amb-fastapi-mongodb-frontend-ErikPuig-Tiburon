@@ -2,7 +2,14 @@
 
 ### To guapo esto de arriba
 
-## Ordre
+## 📌 Sobre el projecte
+
+Aquest projecte és un CRUD complet de gestió de tasques fet amb FastAPI,
+MongoDB i frontend amb HTML, CSS i JS.
+
+Permet crear, llegir, actualitzar i eliminar tasques.
+
+##  Estructura del projecte
 
 El ordre es molt important al hora de fer projectes, en aquest cas aqui tindrem l'estructura del meu projecte:
 
@@ -35,7 +42,23 @@ El ordre es molt important al hora de fer projectes, en aquest cas aqui tindrem 
 │   └── ⚙️ Gestor_de_Tasques.postman_collection.json
 └── 📝 README.md
 ```
+## Funcionalitats
 
+-   CRUD complet
+-   Estat (pendent / feta)
+-   Prioritat
+-   Categoria
+-   Assignació
+
+## API
+
+Endpoints principals:
+
+-   POST /tasques
+-   GET /tasques
+-   GET /tasques/{id}
+-   PUT /tasques/{id}
+-   DELETE /tasques/{id}
 
 ## Tutorial
 
@@ -182,11 +205,7 @@ La resposta es aquesta
 
 ![GetPostman](img/Delteresposta.png)
 
-## 🎥 Vídeo
-
-Se que tenia que ser un video curtet, pero una cosa llevo a la otra
-
-
+## Video demostratiu FrontEnd
 
 https://github.com/user-attachments/assets/738fe2ba-f82f-482a-ae23-293e659f6300
 
