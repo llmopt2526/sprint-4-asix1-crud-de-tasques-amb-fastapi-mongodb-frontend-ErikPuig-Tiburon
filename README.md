@@ -161,7 +161,7 @@ Seguidament farem una porva de insercio de dades
 
 ### PUT
 
-El endpoint seria aquest
+La prova sera la seguent
 
 ![GetPostman](img/PUT.png)
 
@@ -171,7 +171,7 @@ La resposta es aquesta
 
 ### GET a todos
 
-El endpoint seria aquest
+La prova sera la seguent
 
 ![GetPostman](img/GetTOTS.png)
 
@@ -181,13 +181,13 @@ La resposta es aquesta
 
 ### GET individual
 
-El endpoint seria aquest
+La prova sera la seguent
 
 ![GetPostman](img/GET.png)
 
 ### PUT
 
-El endpoint seria aquest
+La prova sera la seguent
 
 ![GetPostman](img/PUT.png)
 
@@ -197,7 +197,7 @@ La resposta es aquesta
 
 ### Delete
 
-El endpoint seria aquest
+La prova sera la seguent
 
 ![GetPostman](img/Delete.png)
 
