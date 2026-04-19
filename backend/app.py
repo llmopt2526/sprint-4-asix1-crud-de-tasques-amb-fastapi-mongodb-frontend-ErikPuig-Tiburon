@@ -5,7 +5,7 @@ from typing import Optional, List
 from fastapi import FastAPI, Body, HTTPException, status
 from fastapi.responses import Response
 
-# Pa fer els models i validar que no envies qualsevol merda
+# Pa fer els models i validar que no envies qualsevol cosa
 from pydantic import ConfigDict, BaseModel, Field
 from pydantic.functional_validators import BeforeValidator
 from typing_extensions import Annotated
@@ -16,9 +16,6 @@ from bson import ObjectId
 # MongoDB async, que es lo que demana l'enunciat
 from pymongo import AsyncMongoClient
 from pymongo import ReturnDocument
-
-# Lo del CORS pa que el frontend no se queixe quan cride al backend
-from fastapi.middleware.cors import CORSMiddleware
 
 
 # ------------------------------------------------------------------------ #
@@ -31,15 +28,6 @@ app = FastAPI(
     summary="Aplicacio per a controla un Gestor de Tasques via FastAPI ",
 )
 
-# Aixo es pa que el navegador no toque massa els collons en el frontend
-# Basicament deixem passar peticions des de qualsevol puesto
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 # ------------------------------------------------------------------------ #
@@ -55,7 +43,7 @@ db = client.gestor
 task_collection = db.get_collection("tasques")
 
 # MongoDB treballa en _id amb ObjectId, pero nosaltres volem tractarlo com si fora string
-# Aixina després FastAPI ho pòt enviar millor en JSON
+#  després FastAPI ho podra enviar millor en JSON
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
@@ -129,7 +117,6 @@ class UpdateTascaModel(BaseModel):
 # ------------------------------------------------------------------------ #
 
 # Aixo es pa retornar les tasques dins d'un objecte i no com un array pelat
-# Queda mes net i es la forma que has gastat al frontend
 class TascaCollection(BaseModel):
     tasques: List[TascaModel]
 
