@@ -182,8 +182,12 @@ La resposta es aquesta
 
 ![GetPostman](img/Delteresposta.png)
 
-## Video de la practica completa
+## 🎥 Vídeo
 
 Se que tenia que ser un video curtet, pero una cosa llevo a la otra
 
-https://github.com/llmopt2526/sprint-4-asix1-crud-de-tasques-amb-fastapi-mongodb-frontend-ErikPuig-Tiburon/blob/main/img/videoito.mp4
+
+
+https://github.com/user-attachments/assets/738fe2ba-f82f-482a-ae23-293e659f6300
+
+
